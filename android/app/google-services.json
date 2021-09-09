@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "825852465105",
+    "project_id": "swagit-aae57",
+    "storage_bucket": "swagit-aae57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825852465105:android:3713a8ae46860cd46bdaf0",
+        "android_client_info": {
+          "package_name": "com.example.swagit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825852465105-dnptn0v97prjtiu39eq5qkdtus5h7tob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrAo86u5IVOmRjt7epDtWAofkn25DP258"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825852465105-dnptn0v97prjtiu39eq5qkdtus5h7tob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
