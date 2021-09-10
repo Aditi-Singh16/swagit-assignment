@@ -18,20 +18,33 @@ class _SearchState extends State<Search> {
 
   void _searchResult(String text){
     List<MyUser> searchUsers = [];
-    if(text.length>0){
-      setState(() {
-        isSearch = !isSearch;
-      });
-      for(int i =0 ; i < widget.allUsers.length; i++){
-        if(widget.allUsers[i].Name.contains(new RegExp(text, caseSensitive: false))){
-          searchUsers.add(widget.allUsers[i]);
-        }
-      }
-      setState(() {
-        searchResult = searchUsers ;
-      });
-      //print(searchResult[0].Name);
+    // if(text.length>0){
+    //   setState(() {
+    //     isSearch = !isSearch;
+    //   });
+    //   for(int i =0 ; i < widget.allUsers.length; i++){
+    //     if(widget.allUsers[i].Name.contains(new RegExp(text, caseSensitive: false))){
+    //       searchUsers.add(widget.allUsers[i]);
+    //     }
+    //   }
+    //   setState(() {
+    //     searchResult = searchUsers ;
+    //   });
+    //   //print(searchResult[0].Name);
+    // }
+    if (text.isEmpty) {
+      searchUsers = widget.allUsers;
+    } else {
+
+      searchUsers = widget.allUsers.where((user) => user.Name.toLowerCase().contains(text.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
     }
+
+    // Refresh the UI
+    setState(() {
+      searchResult = searchUsers;
+    });
   }
 
   @override
@@ -42,24 +55,22 @@ class _SearchState extends State<Search> {
         title: Text('Search Users'),
         backgroundColor: Color(0xffFF9678F3),
       ),
-      body: SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            SizedBox(
-              width: 200,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search users...'
-                ),
-                  controller: controller,
-                  onChanged: (value) => _searchResult(value)
+      body: Column(
+        children: [
+          SizedBox(height: 10),
+          SizedBox(
+            width: 200,
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search users...'
               ),
+                controller: controller,
+                onChanged: (value) => _searchResult(value)
             ),
-            isSearch?
-            ListView.builder(
-              physics: ScrollPhysics(),
+          ),
+          searchResult.length>0?
+          Expanded(
+            child: ListView.builder(
               shrinkWrap: true,
               itemCount: searchResult.length,
               itemBuilder: (context, index) {
@@ -89,11 +100,11 @@ class _SearchState extends State<Search> {
                   ),
                 );
               },
-            )
-            :
-          Container()
-          ],
-        ),
+            ),
+          )
+          :
+        Container()
+        ],
       ),
     );
   }
