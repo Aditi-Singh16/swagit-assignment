@@ -39,90 +39,89 @@ class _UsersListState extends State<UsersList> {
         decoration: BoxDecoration(
             color: Color(0xffe4dbfc)
         ),
-        child: SingleChildScrollView(
-          physics: ScrollPhysics(),
-          child: Column(
-              children: [
-                SizedBox(height: 100),
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(35.0, 20.0, 20.0, 20.0),
-                        child: Text(
-                          'Accounts',
-                          style: TextStyle(
-                              fontFamily: 'Lato',
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold
-                          ),
+        child: Column(
+            children: [
+              SizedBox(height: 100),
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(35.0, 20.0, 20.0, 20.0),
+                      child: Text(
+                        'Accounts',
+                        style: TextStyle(
+                            fontFamily: 'Lato',
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
-                    SizedBox(width: 70.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Search(allUsers)),
-                        );
-                      },
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.black38,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(15),
-                      ),
-                    )
-                  ],
-                ),
-                Container(
+                  ),
+                  SizedBox(width: 70.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Search(allUsers)),
+                      );
+                    },
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.black38,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(15),
+                    ),
+                  )
+                ],
+              ),
+              Expanded(
+                child: Container(
                   decoration: BoxDecoration(
                     color: Color(0xffebe9fd),
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(40.0),
                       topLeft: Radius.circular(40.0),
-                    ),
+                    )
                   ),
                   child: ListView.builder(
-                    physics: ScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: allUsers.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(
-                          allUsers[index].Name,
-                          style: TextStyle(
-                              fontFamily: 'Lato',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0,
-                              color: Color(0xffE90F0F11)
-                          ),
+                  shrinkWrap: true,
+                  itemCount: allUsers.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        allUsers[index].Name,
+                        style: TextStyle(
+                            fontFamily: 'Lato',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xffE90F0F11)
                         ),
-                        leading: Container(
-                          margin: EdgeInsets.all(0.0),
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(allUsers[index].profile)),
-                          ),
+                      ),
+                      leading: Container(
+                        margin: EdgeInsets.all(0.0),
+                        width: 100.0,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(allUsers[index].profile)),
                         ),
-                        subtitle: Text(
-                            '${allUsers[index].follower} Followers'
-                        ),
-                      );
-                    },
-                  ),
+                      ),
+                      subtitle: Text(
+                          '${allUsers[index].follower} Followers'
+                      ),
+                    );
+                  },
+                    ),
                 ),
-              ]
-          ),
+              ),
+
+            ]
         ),
       ),
     );
